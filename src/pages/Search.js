@@ -13,29 +13,25 @@ const Search = () => {
         e.preventDefault();
         axios({
             method: "get",
-            url: "http://localhost:3000/search/",
+            url: `${process.env.REACT_APP_API_URL}/search`,
             params: {
                 search_term: searchTerm,
             },
-        })
-            // .get(`http://localhost:3000/search/?search_term=${searchTerm}`)
-            .then((response) => {
-                console.log(response);
-                let items = response.data.results.map((item) => {
-                    return {
-                        name: item.premise_name,
-                        score: item.score_recent,
-                        grade: item.grade_recent,
-                        date: item.date_recent,
-                        address: item.premise_address,
-                        city: item.premise_city,
-                        state: item.premise_state,
-                        zip: item.premise_zip,
-                    };
-                });
-                console.log(items);
-                setResults(items);
+        }).then((response) => {
+            let items = response.data.results.map((item) => {
+                return {
+                    name: item.premise_name,
+                    score: item.score_recent,
+                    grade: item.grade_recent,
+                    date: item.date_recent,
+                    address: item.premise_address,
+                    city: item.premise_city,
+                    state: item.premise_state,
+                    zip: item.premise_zip,
+                };
             });
+            setResults(items);
+        });
     };
     return (
         <>

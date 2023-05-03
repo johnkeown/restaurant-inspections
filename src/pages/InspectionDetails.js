@@ -23,8 +23,8 @@ const InspectionDetails = () =>
             premise_zip,
             inspection_date,
         } = location.state;
-        const [violations, setViolations] = useState([]);
-        const getVioloations = () => {
+        const [inspectionViolations, setInspectionViolations] = useState([]);
+        const getInspectionVioloations = () => {
             let premise_address_number = premise_address.split(" ")[0];
             let premise_address_street = premise_address.substring(
                 premise_address.indexOf(" ") + 1
@@ -41,17 +41,17 @@ const InspectionDetails = () =>
                             comments: item.insp_viol_comments,
                         };
                     });
-                    setViolations(items);
+                    setInspectionViolations(items);
                 });
         };
         useEffect(() => {
-            getVioloations();
+            getInspectionVioloations();
         }, []);
         return (
             <>
                 <Box w="full" paddingLeft={2} paddingRight={2}>
-                    Showing the latest {violations.length} inspections
-                    <SearchResults items={violations} />
+                    Showing the latest {inspectionViolations.length} inspections
+                    <SearchResults items={inspectionViolations} />
                 </Box>
             </>
         );

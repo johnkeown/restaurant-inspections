@@ -7,7 +7,7 @@ const Search = () => {
     const [searchResults, setSearchResults] = useState([]);
     const doSearch = () => {
         axios
-            .get(`https://api.johnkeown.com/danger_zone.php`)
+            .get(`${process.env.REACT_APP_API_URL}/dangerZone`)
             .then((response) => {
                 let items = response.data.results.map((item) => {
                     return {

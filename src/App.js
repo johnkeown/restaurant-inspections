@@ -8,6 +8,9 @@ import Latest from "./pages/Latest";
 import DangerZone from "./pages/DangerZone";
 import RestaurantDetail from "./pages/RestaurantDetail";
 import InspectionDetails from "./pages/InspectionDetails";
+import ReactGA from "react-ga4";
+
+if (process.env.NODE_ENV === "production") ReactGA.initialize("G-LP7QY3NFDN");
 
 function App() {
     return (
