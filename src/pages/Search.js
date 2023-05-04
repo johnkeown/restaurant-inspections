@@ -20,14 +20,17 @@ const Search = () => {
         }).then((response) => {
             let items = response.data.results.map((item) => {
                 return {
-                    name: item.premise_name,
-                    score: item.score_recent,
-                    grade: item.grade_recent,
-                    date: item.date_recent,
-                    address: item.premise_address,
-                    city: item.premise_city,
-                    state: item.premise_state,
-                    zip: item.premise_zip,
+                    establishment_id: item.EstablishmentID,
+                    inspection_id: item.InspectionID,
+                    name: item.EstablishmentName,
+                    score: item.score,
+                    grade: item.Grade,
+                    date: item.InspectionDate,
+                    address: item.Address,
+                    address2: item.Address2,
+                    city: item.City,
+                    state: item.State,
+                    zip: item.Zip,
                 };
             });
             setResults(items);

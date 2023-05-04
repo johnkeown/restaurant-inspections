@@ -18,11 +18,14 @@ const SearchResults = ({ items }) => {
                     items.map((item, i) => (
                         <SearchResult
                             key={i}
+                            establishment_id={item.establishment_id}
+                            inspection_id={item.inspection_id}
                             name={item.name}
                             score={item.score}
                             grade={item.grade}
                             date={item.date}
                             address={item.address}
+                            address2={item.address2}
                             city={item.city}
                             state={item.state}
                             zip={item.zip}

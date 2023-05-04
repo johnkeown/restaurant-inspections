@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Address from "../Address";
 
 const SearchResult = ({
+    establishment_id,
+    inspection_id,
     name,
     score,
     grade,
@@ -19,12 +21,8 @@ const SearchResult = ({
                 <Link
                     to="/inspection-details"
                     state={{
-                        premise_name: name,
-                        premise_address: address,
-                        premise_city: city,
-                        premise_state: state,
-                        premise_zip: zip,
-                        inspection_date: date,
+                        establishment_id: establishment_id,
+                        inspection_id: inspection_id,
                     }}
                 >
                     {name}
