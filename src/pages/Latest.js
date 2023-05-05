@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { Box } from "@chakra-ui/react";
 import axios from "axios";
 import SearchResults from "../components/SearchResults";

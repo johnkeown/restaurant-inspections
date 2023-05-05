@@ -24,6 +24,7 @@ const SearchResult = ({
                         establishment_id: establishment_id,
                         inspection_id: inspection_id,
                     }}
+                    color="teal.500"
                 >
                     {name}
                 </Link>

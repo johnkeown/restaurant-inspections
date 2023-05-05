@@ -1,7 +1,5 @@
 import React from "react";
 import { Tr, Td } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-import Address from "../Address";
 
 const Violation = ({ description, critical, comments }) => {
     return (
