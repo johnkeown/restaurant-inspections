@@ -15,6 +15,8 @@ const SearchResult = ({
     state,
     zip,
 }) => {
+    let dateObj = new Date(date);
+
     return (
         <Tr>
             <Td>
@@ -37,7 +39,7 @@ const SearchResult = ({
                     zip={zip}
                 />
             </Td>
-            <Td>{date}</Td>
+            <Td>{new Date(date).toLocaleDateString("en-us")}</Td>
             <Td>{grade}</Td>
             <Td>{score}</Td>
         </Tr>
