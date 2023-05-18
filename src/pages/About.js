@@ -7,6 +7,7 @@ import {
     ListItem,
     UnorderedList,
 } from "@chakra-ui/react";
+import ExternalLinkIconCustom from "../components/ExternalLinkIconCustom";
 
 const About = () => {
     return (
@@ -17,46 +18,35 @@ const About = () => {
                     This is a portfolio project that is a work in progress and
                     is being updated regularly. Using publicly availabile
                     Louisville, KY restaurant inspection data sets published at{" "}
-                    <Link
-                        color="teal.500"
-                        href="https://data.louisvilleky.gov"
-                        target="_blank"
-                    >
-                        Louisville Metro Open Data
+                    <Link href="https://data.louisvilleky.gov" target="_blank">
+                        Louisville Metro Open Data <ExternalLinkIconCustom />
                     </Link>
                     , it allows the user to search restaurant health inspection
                     data and view scores, location information, and inspection
                     violations. It also includes{" "}
-                    <Link color="teal.500" href="/latest">
-                        Latest
-                    </Link>{" "}
-                    and{" "}
-                    <Link color="teal.500" href="/danger-zone">
-                        Danger Zone
-                    </Link>{" "}
-                    views, which includes all restaurants with a C rating.
+                    <Link href="/latest">Latest</Link> and{" "}
+                    <Link href="/danger-zone">Danger Zone</Link> views, which
+                    includes all restaurants with a C rating.
                 </Box>
                 <Box paddingTop="15px">
                     Data sets used include:
                     <UnorderedList paddingLeft="20px">
                         <ListItem>
                             <Link
-                                color="teal.500"
                                 href="https://data.louisvilleky.gov/datasets/LOJIC::louisville-metro-ky-restaurant-inspection-scores/explore"
-                                target="_blank"
+                                isExternal
                             >
                                 Louisville Metro KY - Restaurant Inspection
-                                Scores
+                                Scores <ExternalLinkIconCustom />
                             </Link>
                         </ListItem>
                         <ListItem>
                             <Link
-                                color="teal.500"
                                 href="https://data.louisvilleky.gov/datasets/LOJIC::louisville-metro-ky-inspection-violations-of-failed-restaurants/explore"
-                                target="_blank"
+                                isExternal
                             >
                                 Louisville Metro KY - Inspection Violations of
-                                Failed Restaurants
+                                Failed Restaurants <ExternalLinkIconCustom />
                             </Link>
                         </ListItem>
                     </UnorderedList>
@@ -71,30 +61,24 @@ const About = () => {
                             Front End:
                             <UnorderedList>
                                 <ListItem>
-                                    <Link
-                                        color="teal.500"
-                                        href="https://react.dev"
-                                        target="_blank"
-                                    >
-                                        ReactJS
+                                    <Link href="https://react.dev" isExternal>
+                                        ReactJS <ExternalLinkIconCustom />
                                     </Link>
                                 </ListItem>
                                 <ListItem>
                                     <Link
-                                        color="teal.500"
                                         href="https://chakra-ui.com"
-                                        target="_blank"
+                                        isExternal
                                     >
-                                        Chakra UI
+                                        Chakra UI <ExternalLinkIconCustom />
                                     </Link>
                                 </ListItem>
                                 <ListItem>
                                     <Link
-                                        color="teal.500"
                                         href="https://axios-http.com"
-                                        target="_blank"
+                                        isExternal
                                     >
-                                        Axios
+                                        Axios <ExternalLinkIconCustom />
                                     </Link>
                                 </ListItem>
                             </UnorderedList>
@@ -104,20 +88,18 @@ const About = () => {
                             <UnorderedList>
                                 <ListItem>
                                     <Link
-                                        color="teal.500"
                                         href="https://nodejs.org/en"
-                                        target="_blank"
+                                        isExternal
                                     >
-                                        NodeJS
+                                        NodeJS <ExternalLinkIconCustom />
                                     </Link>
                                 </ListItem>
                                 <ListItem>
                                     <Link
-                                        color="teal.500"
                                         href="https://expressjs.com"
-                                        target="_blank"
+                                        isExternal
                                     >
-                                        Express
+                                        Express <ExternalLinkIconCustom />
                                     </Link>
                                 </ListItem>
                             </UnorderedList>
@@ -127,11 +109,10 @@ const About = () => {
                             <UnorderedList>
                                 <ListItem>
                                     <Link
-                                        color="teal.500"
                                         href="https://www.mysql.com"
-                                        target="_blank"
+                                        isExternal
                                     >
-                                        MySQL
+                                        MySQL <ExternalLinkIconCustom />
                                     </Link>
                                 </ListItem>
                             </UnorderedList>

@@ -1,6 +1,6 @@
 import React from "react";
-import { Tr, Td } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Tr, Td, Link } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 import Address from "../Address";
 
 const SearchResult = ({
@@ -15,18 +15,16 @@ const SearchResult = ({
     state,
     zip,
 }) => {
-    let dateObj = new Date(date);
-
     return (
         <Tr>
             <Td>
                 <Link
+                    as={RouterLink}
                     to="/inspection-details"
                     state={{
                         establishment_id: establishment_id,
                         inspection_id: inspection_id,
                     }}
-                    color="teal.500"
                 >
                     {name}
                 </Link>

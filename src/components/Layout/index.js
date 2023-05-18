@@ -1,13 +1,21 @@
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
-import { Flex, Box, Center, HStack, Text, Spacer } from "@chakra-ui/react";
+import { Outlet, Link as RouterLink } from "react-router-dom";
+import {
+    Flex,
+    Box,
+    Center,
+    HStack,
+    Link,
+    Text,
+    Spacer,
+} from "@chakra-ui/react";
 
 const Layout = () => {
     return (
         <>
             <Flex padding="5px" gap="20px">
                 <Center width="350px">
-                    <Link to="/">
+                    <Link as={RouterLink} to="/" variant="siteName">
                         <Text fontWeight="bold" fontSize="xl">
                             Louisville Restaurant Inspections
                         </Text>
@@ -16,22 +24,22 @@ const Layout = () => {
                 <Spacer />
                 <HStack>
                     <Center width="100px">
-                        <Link to="/">
+                        <Link as={RouterLink} to="/" variant="nav">
                             <Text fontWeight="bold">Search</Text>
                         </Link>
                     </Center>
                     <Center width="100px">
-                        <Link to="/latest">
+                        <Link as={RouterLink} to="/latest" variant="nav">
                             <Text fontWeight="bold">Latest</Text>
                         </Link>
                     </Center>
                     <Center width="100px">
-                        <Link to="/danger-zone">
+                        <Link as={RouterLink} to="/danger-zone" variant="nav">
                             <Text fontWeight="bold">Danger Zone</Text>
                         </Link>
                     </Center>
                     <Center width="100px">
-                        <Link to="/about">
+                        <Link as={RouterLink} to="/about" variant="nav">
                             <Text fontWeight="bold">About</Text>
                         </Link>
                     </Center>

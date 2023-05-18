@@ -9,12 +9,13 @@ import DangerZone from "./pages/DangerZone";
 import RestaurantDetail from "./pages/RestaurantDetail";
 import InspectionDetails from "./pages/InspectionDetails";
 import ReactGA from "react-ga4";
+import theme from "./inc/chakra-ui/theme.js";
 
 if (process.env.NODE_ENV === "production") ReactGA.initialize("G-LP7QY3NFDN");
 
 function App() {
     return (
-        <ChakraProvider>
+        <ChakraProvider theme={theme}>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Layout />}>
