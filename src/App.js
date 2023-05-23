@@ -11,7 +11,8 @@ import InspectionDetails from "./pages/InspectionDetails";
 import ReactGA from "react-ga4";
 import theme from "./inc/chakra-ui/theme.js";
 
-if (process.env.NODE_ENV === "production") ReactGA.initialize("G-LP7QY3NFDN");
+if (process.env.NODE_ENV === "production")
+    ReactGA.initialize(process.env.REACT_APP_GA);
 
 function App() {
     return (
