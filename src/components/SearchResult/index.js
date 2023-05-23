@@ -1,9 +1,10 @@
 import React from "react";
-import { Tr, Td, Link } from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router-dom";
+import { Tr, Td, Button } from "@chakra-ui/react";
 import Address from "../Address";
 
 const SearchResult = ({
+    handleItemClick,
+    onOpen,
     establishment_id,
     inspection_id,
     name,
@@ -18,16 +19,15 @@ const SearchResult = ({
     return (
         <Tr>
             <Td>
-                <Link
-                    as={RouterLink}
-                    to="/inspection-details"
-                    state={{
-                        establishment_id: establishment_id,
-                        inspection_id: inspection_id,
+                <Button
+                    variant="link"
+                    onClick={() => {
+                        handleItemClick(establishment_id, inspection_id);
+                        onOpen();
                     }}
                 >
                     {name}
-                </Link>
+                </Button>
             </Td>
             <Td>
                 <Address

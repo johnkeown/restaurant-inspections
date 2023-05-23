@@ -18,6 +18,13 @@ const theme = extendTheme({
                 },
             },
         },
+        Button: {
+            variants: {
+                link: {
+                    color: "teal.500",
+                },
+            },
+        },
     },
 });
 
