@@ -29,7 +29,7 @@ const InspectionDetailsModal = ({ establishmentId, inspectionId }) => {
     return (
         <>
             <Box w="full" paddingLeft={2} paddingRight={2}>
-                Showing the latest {inspectionViolations.length} inspections
+                Showing the latest {inspectionViolations.length} violations
                 <Violations items={inspectionViolations} />
             </Box>
         </>
