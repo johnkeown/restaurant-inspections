@@ -17,15 +17,26 @@ import {
     ModalCloseButton,
     useDisclosure,
 } from "@chakra-ui/react";
+import ReactGA from "react-ga4";
 
 const SearchResults = ({ items }) => {
     const [establishmentId, setEstablishmentId] = useState(null);
     const [inspectionId, setInspectionId] = useState(null);
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const handleItemClick = (itemEstablishmentId, itemInspectionId) => {
-        console.log("establishmentId:  " + itemEstablishmentId);
-        console.log("inspectionId:  " + itemInspectionId);
+    const handleItemClick = (
+        itemEstablishmentId,
+        itemInspectionId,
+        itemName
+    ) => {
+        // log event in Google Analytics
+        ReactGA.event("view_establishment_details", {
+            establishment_id: itemEstablishmentId,
+            inspection_id: itemInspectionId,
+            establishment_name: itemName,
+        });
+
+        // set state values
         setEstablishmentId(itemEstablishmentId);
         setInspectionId(itemInspectionId);
     };

@@ -22,7 +22,7 @@ const SearchResult = ({
                 <Button
                     variant="link"
                     onClick={() => {
-                        handleItemClick(establishment_id, inspection_id);
+                        handleItemClick(establishment_id, inspection_id, name);
                         onOpen();
                     }}
                 >
