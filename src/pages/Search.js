@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Box, HStack, Input, Button } from "@chakra-ui/react";
 import axios from "axios";
+import ReactGA from "react-ga4";
 import SearchResults from "../components/SearchResults";
 
 const Search = () => {
@@ -11,6 +12,12 @@ const Search = () => {
     };
     const handleSearch = (e) => {
         e.preventDefault();
+
+        // log event in Google Analytics
+        if (process.env.NODE_ENV === "production")
+            ReactGA.event("search", { search_term: searchTerm });
+
+        // perform search against API
         axios({
             method: "get",
             url: `${process.env.REACT_APP_API_URL}/search`,
