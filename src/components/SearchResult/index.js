@@ -1,5 +1,5 @@
 import React from "react";
-import { Tr, Td, Button } from "@chakra-ui/react";
+import { Text, Tr, Td, Button } from "@chakra-ui/react";
 import Address from "../Address";
 
 const SearchResult = ({
@@ -18,6 +18,14 @@ const SearchResult = ({
 }) => {
     return (
         <Tr>
+            <Td textAlign="center">
+                <Text variant={grade === "C" ? "gradeLetterC" : "gradeLetterA"}>
+                    {grade}
+                </Text>
+                <Text variant={grade === "C" ? "gradeC" : "gradeA"}>
+                    {score}
+                </Text>
+            </Td>
             <Td>
                 <Button
                     variant="link"
@@ -25,6 +33,10 @@ const SearchResult = ({
                         handleItemClick(establishment_id, inspection_id, name);
                         onOpen();
                     }}
+                    maxWidth={{ sm: "150px", md: "250px", lg: "100%" }}
+                    whiteSpace="normal"
+                    blockSize="auto"
+                    textAlign="left"
                 >
                     {name}
                 </Button>
@@ -38,8 +50,6 @@ const SearchResult = ({
                 />
             </Td>
             <Td>{new Date(date).toLocaleDateString("en-us")}</Td>
-            <Td>{grade}</Td>
-            <Td>{score}</Td>
         </Tr>
     );
 };

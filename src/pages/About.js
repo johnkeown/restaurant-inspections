@@ -55,10 +55,10 @@ const About = () => {
                     Data was last refreshed on 5/4/2023.
                 </Box>
                 <Box paddingTop="15px">
-                    <Text>Technologies used include</Text>
+                    <Text>Technologies used include:</Text>
                     <UnorderedList paddingLeft="20px">
                         <ListItem>
-                            Front End:
+                            Front End
                             <UnorderedList>
                                 <ListItem>
                                     <Link href="https://react.dev" isExternal>

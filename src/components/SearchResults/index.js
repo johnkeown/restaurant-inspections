@@ -43,14 +43,13 @@ const SearchResults = ({ items }) => {
 
     return (
         <>
-            <Table>
+            <Table variant="striped">
                 <Thead>
                     <Tr>
-                        <Th>Name</Th>
+                        <Th width="71px">Grade</Th>
+                        <Th>Restaurant Name</Th>
                         <Th>Address</Th>
                         <Th>Date</Th>
-                        <Th>Grade</Th>
-                        <Th>Score</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
