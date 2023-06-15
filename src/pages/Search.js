@@ -1,17 +1,21 @@
 import { useState } from "react";
-import { Box, HStack, Input, Button } from "@chakra-ui/react";
+import { Box, HStack, Input, Button, Image } from "@chakra-ui/react";
 import axios from "axios";
 import ReactGA from "react-ga4";
 import SearchResults from "../components/SearchResults";
 
 const Search = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const [results, setResults] = useState([]);
+
     const handleChangeSearchTerm = (e) => {
         setSearchTerm(e.target.value);
     };
+
     const handleSearch = (e) => {
         e.preventDefault();
+        setIsLoading(true);
 
         // log event in Google Analytics
         if (process.env.NODE_ENV === "production")
@@ -41,8 +45,10 @@ const Search = () => {
                 };
             });
             setResults(items);
+            setIsLoading(false);
         });
     };
+
     return (
         <>
             <Box w="full">
@@ -65,8 +71,21 @@ const Search = () => {
                         </HStack>
                     </form>
                 </Box>
-                {results.length} results found
-                <SearchResults items={results} />
+                {isLoading && (
+                    <Box w="full" textAlign="center">
+                        <Image
+                            marginLeft="auto"
+                            marginRight="auto"
+                            src="/Spinner.svg"
+                        />
+                    </Box>
+                )}
+                {!isLoading && (
+                    <>
+                        {results.length} results found
+                        <SearchResults items={results} />
+                    </>
+                )}
             </Box>
         </>
     );

@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Image, Text } from "@chakra-ui/react";
 import axios from "axios";
 import SearchResults from "../components/SearchResults";
 
 const Search = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
+
     const doSearch = () => {
+        setIsLoading(true);
         axios
             .get(`${process.env.REACT_APP_API_URL}/dangerZone`)
             .then((response) => {
@@ -25,6 +28,7 @@ const Search = () => {
                     };
                 });
                 setSearchResults(items);
+                setIsLoading(false);
             });
     };
     useEffect(() => {
@@ -33,10 +37,24 @@ const Search = () => {
     return (
         <>
             <Box w="full" paddingLeft={2} paddingRight={2}>
-                <Text>
-                    {searchResults.length} inspections found with a "C" grade
-                </Text>
-                <SearchResults items={searchResults} />
+                {isLoading && (
+                    <Box w="full" textAlign="center">
+                        <Image
+                            marginLeft="auto"
+                            marginRight="auto"
+                            src="/Spinner.svg"
+                        />
+                    </Box>
+                )}
+                {!isLoading && (
+                    <>
+                        <Text>
+                            {searchResults.length} inspections found with a "C"
+                            grade
+                        </Text>
+                        <SearchResults items={searchResults} />
+                    </>
+                )}
             </Box>
         </>
     );

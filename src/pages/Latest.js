@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import axios from "axios";
 import SearchResults from "../components/SearchResults";
 
 const Latest = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const [latestItems, setLatestItems] = useState([]);
+
     const getLatest = () => {
+        setIsLoading(true);
         axios
             .get(`${process.env.REACT_APP_API_URL}/latest`)
             .then((response) => {
@@ -25,6 +28,7 @@ const Latest = () => {
                     };
                 });
                 setLatestItems(items);
+                setIsLoading(false);
             });
     };
     useEffect(() => {
@@ -33,8 +37,21 @@ const Latest = () => {
     return (
         <>
             <Box w="full" paddingLeft={2} paddingRight={2}>
-                Showing the latest {latestItems.length} inspections
-                <SearchResults items={latestItems} />
+                {isLoading && (
+                    <Box w="full" textAlign="center">
+                        <Image
+                            marginLeft="auto"
+                            marginRight="auto"
+                            src="/Spinner.svg"
+                        />
+                    </Box>
+                )}
+                {!isLoading && (
+                    <>
+                        Showing the latest {latestItems.length} inspections
+                        <SearchResults items={latestItems} />
+                    </>
+                )}
             </Box>
         </>
     );

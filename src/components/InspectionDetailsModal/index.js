@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import Violations from "../Violations";
 import axios from "axios";
-import { Box } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 
 const InspectionDetailsModal = ({ establishmentId, inspectionId }) => {
+    const [isLoading, setIsLoading] = useState(false);
     const [inspectionViolations, setInspectionViolations] = useState([]);
 
     useEffect(() => {
+        setIsLoading(true);
         axios({
             method: "get",
             url: `${process.env.REACT_APP_API_URL}/violations`,
@@ -23,14 +25,35 @@ const InspectionDetailsModal = ({ establishmentId, inspectionId }) => {
                 };
             });
             setInspectionViolations(items);
+            setIsLoading(false);
         });
     }, [establishmentId, inspectionId]);
 
     return (
         <>
             <Box w="full" paddingLeft={2} paddingRight={2}>
-                Showing the latest {inspectionViolations.length} violations
-                <Violations items={inspectionViolations} />
+                {isLoading && (
+                    <Box w="full" textAlign="center">
+                        <Image
+                            marginLeft="auto"
+                            marginRight="auto"
+                            src="/Spinner.svg"
+                        />
+                    </Box>
+                )}
+                {!isLoading && (
+                    <>
+                        {inspectionViolations.length > 0 ? (
+                            <>
+                                Showing {inspectionViolations.length} violations
+                                from the latest inspection
+                                <Violations items={inspectionViolations} />
+                            </>
+                        ) : (
+                            <>No violations found</>
+                        )}
+                    </>
+                )}
             </Box>
         </>
     );
