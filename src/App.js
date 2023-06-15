@@ -6,8 +6,6 @@ import About from "./pages/About";
 import Search from "./pages/Search";
 import Latest from "./pages/Latest";
 import DangerZone from "./pages/DangerZone";
-import RestaurantDetail from "./pages/RestaurantDetail";
-import InspectionDetails from "./pages/InspectionDetails";
 import ReactGA from "react-ga4";
 import theme from "./inc/chakra-ui/theme.js";
 
@@ -24,15 +22,6 @@ function App() {
                         <Route path="latest" element={<Latest />} />
                         <Route path="danger-zone" element={<DangerZone />} />
                         <Route path="about" element={<About />} />
-                        <Route
-                            path="restaurantDetail"
-                            element={<RestaurantDetail />}
-                        />
-                        <Route
-                            path="inspection-details"
-                            // render={(props) => <InspectionDetails {...props} />}
-                            element={<InspectionDetails />}
-                        />
                     </Route>
                 </Routes>
             </BrowserRouter>
