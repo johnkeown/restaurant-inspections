@@ -17,39 +17,41 @@ const Search = () => {
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
 
-        setIsLoading(true);
+        if (searchTerm) {
+            setIsLoading(true);
 
-        // log event in Google Analytics
-        if (process.env.NODE_ENV === "production")
-            ReactGA.event("search", { search_term: searchTerm });
+            // log event in Google Analytics
+            if (process.env.NODE_ENV === "production")
+                ReactGA.event("search", { search_term: searchTerm });
 
-        // perform search against API
-        axios({
-            method: "get",
-            url: `${process.env.REACT_APP_API_URL}/search`,
-            params: {
-                search_term: searchTerm,
-            },
-        }).then((response) => {
-            let items = response.data.results.map(
-                (item: SearchResultResponse) => {
-                    return {
-                        establishment_id: item.EstablishmentID,
-                        inspection_id: item.InspectionID,
-                        name: item.EstablishmentName,
-                        score: item.score,
-                        grade: item.Grade,
-                        date: item.InspectionDate,
-                        address: item.Address,
-                        city: item.City,
-                        state: item.State,
-                        zip: item.Zip,
-                    };
-                }
-            );
-            setResults(items);
-            setIsLoading(false);
-        });
+            // perform search against API
+            axios({
+                method: "get",
+                url: `${process.env.REACT_APP_API_URL}/search`,
+                params: {
+                    search_term: searchTerm,
+                },
+            }).then((response) => {
+                let items = response.data.results.map(
+                    (item: SearchResultResponse) => {
+                        return {
+                            establishment_id: item.EstablishmentID,
+                            inspection_id: item.InspectionID,
+                            name: item.EstablishmentName,
+                            score: item.score,
+                            grade: item.Grade,
+                            date: item.InspectionDate,
+                            address: item.Address,
+                            city: item.City,
+                            state: item.State,
+                            zip: item.Zip,
+                        };
+                    }
+                );
+                setResults(items);
+                setIsLoading(false);
+            });
+        }
     };
 
     return (
@@ -68,6 +70,7 @@ const Search = () => {
                                 size="lg"
                                 onClick={handleSearch}
                                 type="submit"
+                                disabled={!searchTerm}
                             >
                                 Search
                             </Button>
