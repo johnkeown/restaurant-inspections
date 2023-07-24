@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SearchResult from "../SearchResult";
-import InspectionDetailsModal from "../InspectionDetailsModal";
+import InspectionDetailsModal from "../InspectionDetailsModal/index.js";
 import {
     Button,
     Table,
@@ -18,27 +18,27 @@ import {
     useDisclosure,
 } from "@chakra-ui/react";
 import ReactGA from "react-ga4";
+import {
+    SearchResultsProps,
+    HandleEstablishmentClickFunction,
+} from "../../inc/typescript/interfaces.tsx";
 
-const SearchResults = ({ items }) => {
-    const [establishmentId, setEstablishmentId] = useState(null);
-    const [inspectionId, setInspectionId] = useState(null);
+const SearchResults = ({ items }: SearchResultsProps) => {
+    const [establishmentId, setEstablishmentId] = useState<number | null>(null);
+    const [inspectionId, setInspectionId] = useState<number | null>(null);
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const handleItemClick = (
-        itemEstablishmentId,
-        itemInspectionId,
-        itemName
-    ) => {
+    const handleItemClick = (fn: HandleEstablishmentClickFunction) => {
         // log event in Google Analytics
         ReactGA.event("view_establishment_details", {
-            establishment_id: itemEstablishmentId,
-            inspection_id: itemInspectionId,
-            establishment_name: itemName,
+            establishment_id: fn.itemEstablishmentId,
+            inspection_id: fn.itemInspectionId,
+            establishment_name: fn.itemName,
         });
 
         // set state values
-        setEstablishmentId(itemEstablishmentId);
-        setInspectionId(itemInspectionId);
+        setEstablishmentId(fn.itemEstablishmentId);
+        setInspectionId(fn.itemInspectionId);
     };
 
     return (
@@ -58,7 +58,6 @@ const SearchResults = ({ items }) => {
                             <SearchResult
                                 handleItemClick={handleItemClick}
                                 onOpen={onOpen}
-                                onClose={onClose}
                                 key={i}
                                 establishment_id={item.establishment_id}
                                 inspection_id={item.inspection_id}
@@ -67,7 +66,6 @@ const SearchResults = ({ items }) => {
                                 grade={item.grade}
                                 date={item.date}
                                 address={item.address}
-                                address2={item.address2}
                                 city={item.city}
                                 state={item.state}
                                 zip={item.zip}

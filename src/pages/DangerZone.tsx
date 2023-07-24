@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Box, Image, Text } from "@chakra-ui/react";
 import axios from "axios";
 import SearchResults from "../components/SearchResults";
+import { SearchResultResponse } from "../inc/typescript/interfaces";
 
 const Search = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -12,21 +13,22 @@ const Search = () => {
         axios
             .get(`${process.env.REACT_APP_API_URL}/dangerZone`)
             .then((response) => {
-                let items = response.data.results.map((item) => {
-                    return {
-                        establishment_id: item.EstablishmentID,
-                        inspection_id: item.InspectionID,
-                        name: item.EstablishmentName,
-                        score: item.score,
-                        grade: item.Grade,
-                        date: item.InspectionDate,
-                        address: item.Address,
-                        address2: item.Address2,
-                        city: item.City,
-                        state: item.State,
-                        zip: item.Zip,
-                    };
-                });
+                let items = response.data.results.map(
+                    (item: SearchResultResponse) => {
+                        return {
+                            establishment_id: item.EstablishmentID,
+                            inspection_id: item.InspectionID,
+                            name: item.EstablishmentName,
+                            score: item.score,
+                            grade: item.Grade,
+                            date: item.InspectionDate,
+                            address: item.Address,
+                            city: item.City,
+                            state: item.State,
+                            zip: item.Zip,
+                        };
+                    }
+                );
                 setSearchResults(items);
                 setIsLoading(false);
             });

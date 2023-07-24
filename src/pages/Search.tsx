@@ -3,18 +3,20 @@ import { Box, HStack, Input, Button, Image } from "@chakra-ui/react";
 import axios from "axios";
 import ReactGA from "react-ga4";
 import SearchResults from "../components/SearchResults";
+import { SearchResultResponse } from "../inc/typescript/interfaces";
 
 const Search = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const [results, setResults] = useState([]);
 
-    const handleChangeSearchTerm = (e) => {
+    const handleChangeSearchTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);
     };
 
-    const handleSearch = (e) => {
+    const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
+
         setIsLoading(true);
 
         // log event in Google Analytics
@@ -29,21 +31,22 @@ const Search = () => {
                 search_term: searchTerm,
             },
         }).then((response) => {
-            let items = response.data.results.map((item) => {
-                return {
-                    establishment_id: item.EstablishmentID,
-                    inspection_id: item.InspectionID,
-                    name: item.EstablishmentName,
-                    score: item.score,
-                    grade: item.Grade,
-                    date: item.InspectionDate,
-                    address: item.Address,
-                    address2: item.Address2,
-                    city: item.City,
-                    state: item.State,
-                    zip: item.Zip,
-                };
-            });
+            let items = response.data.results.map(
+                (item: SearchResultResponse) => {
+                    return {
+                        establishment_id: item.EstablishmentID,
+                        inspection_id: item.InspectionID,
+                        name: item.EstablishmentName,
+                        score: item.score,
+                        grade: item.Grade,
+                        date: item.InspectionDate,
+                        address: item.Address,
+                        city: item.City,
+                        state: item.State,
+                        zip: item.Zip,
+                    };
+                }
+            );
             setResults(items);
             setIsLoading(false);
         });

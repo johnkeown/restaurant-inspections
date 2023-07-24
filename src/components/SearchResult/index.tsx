@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, Tr, Td, Button } from "@chakra-ui/react";
 import Address from "../Address";
+import { SearchResultProps } from "../../inc/typescript/interfaces";
 
 const SearchResult = ({
     handleItemClick,
@@ -15,7 +16,7 @@ const SearchResult = ({
     city,
     state,
     zip,
-}) => {
+}: SearchResultProps) => {
     return (
         <Tr>
             <Td textAlign="center">
@@ -30,7 +31,11 @@ const SearchResult = ({
                 <Button
                     variant="link"
                     onClick={() => {
-                        handleItemClick(establishment_id, inspection_id, name);
+                        handleItemClick({
+                            itemEstablishmentId: establishment_id,
+                            itemInspectionId: inspection_id,
+                            itemName: name,
+                        });
                         onOpen();
                     }}
                     maxWidth={{ sm: "150px", md: "250px", lg: "100%" }}
