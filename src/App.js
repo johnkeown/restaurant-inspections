@@ -17,11 +17,11 @@ function App() {
         <ChakraProvider theme={theme}>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Layout />}>
-                        <Route index element={<Search />} />
-                        <Route path="latest" element={<Latest />} />
-                        <Route path="danger-zone" element={<DangerZone />} />
-                        <Route path="about" element={<About />} />
+                    <Route element={<Layout />}>
+                        <Route index path="/" element={<Search />} />
+                        <Route path="/latest" element={<Latest />} />
+                        <Route path="/danger-zone" element={<DangerZone />} />
+                        <Route path="/about" element={<About />} />\
                     </Route>
                 </Routes>
             </BrowserRouter>
