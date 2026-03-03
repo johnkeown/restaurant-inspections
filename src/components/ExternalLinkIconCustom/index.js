@@ -1,7 +1,15 @@
-import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { Image } from "@chakra-ui/react";
 
 const ExternalLinkIconCustom = () => {
-    return <ExternalLinkIcon pb="2px" />;
+  return (
+    <Image
+      marginLeft="auto"
+      marginRight="auto"
+      src="/ExternalLink.svg"
+      height="12px"
+      width="12px"
+    />
+  );
 };
 
 export default ExternalLinkIconCustom;
