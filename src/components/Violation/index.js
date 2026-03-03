@@ -1,14 +1,14 @@
 import React from "react";
-import { Tr, Td } from "@chakra-ui/react";
+import { Table } from "@chakra-ui/react";
 
 const Violation = ({ description, critical, comments }) => {
-    return (
-        <Tr>
-            <Td>{description}</Td>
-            <Td>{critical}</Td>
-            <Td>{comments}</Td>
-        </Tr>
-    );
+  return (
+    <Table.Row>
+      <Table.Cell>{description}</Table.Cell>
+      <Table.Cell>{critical}</Table.Cell>
+      <Table.Cell>{comments}</Table.Cell>
+    </Table.Row>
+  );
 };
 
 export default Violation;
